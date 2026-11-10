@@ -11,7 +11,7 @@
         "restartPolicyMaxRetries": 10
       },
       "source": {
-        "image": "ghcr.io/two-workspaces/evolution:PENDING"
+        "image": "ghcr.io/two-workspaces/evolution:82668e3"
       },
       "variables": {
         "AUTHENTICATION_API_KEY": {
@@ -110,7 +110,7 @@
       "name": "Redis",
       "build": {},
       "deploy": {
-        "startCommand": "/bin/sh -c \"exec docker-entrypoint.sh redis-server --requirepass $REDIS_PASSWORD --appendonly yes --appendfsync everysec --save '' --maxmemory-policy noeviction\"",
+        "startCommand": "/bin/sh -c \"rm -rf $RAILWAY_VOLUME_MOUNT_PATH/lost+found/ && exec docker-entrypoint.sh redis-server --requirepass $REDIS_PASSWORD --appendonly yes --appendfsync everysec --save '' --maxmemory-policy noeviction --dir $RAILWAY_VOLUME_MOUNT_PATH\"",
         "healthcheckPath": null,
         "restartPolicyType": "ON_FAILURE",
         "restartPolicyMaxRetries": 10
