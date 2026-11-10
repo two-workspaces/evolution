@@ -1,0 +1,9 @@
+{
+  "name": "Evolution API",
+  "description": "Evolution API v2 for WhatsApp, with sessions that survive restarts",
+  "category": "Bots",
+  "image": "https://raw.githubusercontent.com/EvolutionAPI/evolution-api/main/public/images/evolution-logo.png",
+  "id": "187e191b-5fe8-4858-9ed8-417d8d1c623c",
+  "published": true,
+  "short_name": "Evolution"
+}
