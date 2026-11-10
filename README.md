@@ -13,7 +13,7 @@ The stack is three services: Evolution API, Postgres and Redis. Only Evolution A
 - **A pinned release.** Evolution API v2.3.7 by image digest, with fixed Postgres and Redis versions, so a redeploy never pulls in an untested upgrade.
 - **Starts in the right order.** The API waits for Postgres, applies its migrations, waits for Redis, then starts. If the API process dies it is restarted in place.
 - **No default key.** The upstream image contains a public default API key. This template generates a private one and refuses to start if the key is empty or the default.
-- **Fits a small plan.** The API idles at about 120 MB of memory with one instance, measured under a 0.5 GB limit. Usage grows with the number of paired numbers and their traffic.
+- **Fits a small plan.** Tested with every service limited to 0.5 GB: the API used about 250 MB with one instance, Postgres 80 MB and Redis 20 MB. Usage grows with the number of paired numbers and their traffic.
 
 ## Common Use Cases
 

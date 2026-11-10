@@ -1,6 +1,6 @@
 {
   "services": {
-    "852b8448-eb60-4868-96d5-6e7bbb95a6e3": {
+    "676a2452-ffae-452a-9887-173e4417faef": {
       "icon": "https://raw.githubusercontent.com/EvolutionAPI/evolution-api/main/public/images/evolution-logo.png",
       "name": "Evolution API",
       "build": {},
@@ -51,12 +51,12 @@
         }
       },
       "volumeMounts": {
-        "852b8448-eb60-4868-96d5-6e7bbb95a6e3": {
+        "676a2452-ffae-452a-9887-173e4417faef": {
           "mountPath": "/evolution/instances"
         }
       }
     },
-    "895afd8a-58fe-4d25-94f7-440547be23bc": {
+    "209fc697-6545-487c-a57c-f0f4479aaa7d": {
       "icon": "https://devicons.railway.app/i/postgresql.svg",
       "name": "Postgres",
       "build": {},
@@ -100,12 +100,12 @@
         "serviceDomains": {}
       },
       "volumeMounts": {
-        "895afd8a-58fe-4d25-94f7-440547be23bc": {
+        "209fc697-6545-487c-a57c-f0f4479aaa7d": {
           "mountPath": "/var/lib/postgresql/data"
         }
       }
     },
-    "a9d419dd-c4ed-47cc-9405-ad89458cb885": {
+    "e96ac8c0-459c-48f9-891d-5b513f9f3110": {
       "icon": "https://devicons.railway.app/i/redis.svg",
       "name": "Redis",
       "build": {},
@@ -134,7 +134,7 @@
         "serviceDomains": {}
       },
       "volumeMounts": {
-        "a9d419dd-c4ed-47cc-9405-ad89458cb885": {
+        "e96ac8c0-459c-48f9-891d-5b513f9f3110": {
           "mountPath": "/data"
         }
       }
