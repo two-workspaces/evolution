@@ -1,7 +1,9 @@
 # Evolution API for Railway: the upstream release, unmodified, behind a start script that
 # waits for Postgres and Redis, refuses the image's public default API key and restarts
 # the API if it dies. Built by .github/workflows/image.yml; Railway pulls the finished image.
-FROM evoapicloud/evolution-api:v2.3.7@sha256:1bd8afc4a6cf48822e6cf02469aeae7bd35a12a6b616eacd1291926307f4d339
+# Tag only, no digest: Dispatcher's upgrade check reads this line to see when a newer release is out.
+# Each build is frozen anyway: the template deploys ghcr.io/two-workspaces/evolution:<commit>.
+FROM evoapicloud/evolution-api:v2.3.7
 
 RUN apk add --no-cache tini
 
