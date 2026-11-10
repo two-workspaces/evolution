@@ -8,7 +8,7 @@
 
 The stack is three services: Evolution API, Postgres and Redis. Only Evolution API has a public URL.
 
-- **Paired numbers survive restarts.** Evolution API keeps the instance credentials in Postgres and WhatsApp's encryption keys in Redis. If Redis loses its data, a paired number can no longer decrypt messages and has to be paired again. Here Redis writes every change to a volume and never evicts keys, and the API doesn't start until Redis answers.
+- **Paired numbers survive restarts.** Evolution API keeps the instance credentials in Postgres and WhatsApp's encryption keys in Redis. If Redis loses its data, messages can fail to decrypt and the number may need pairing again. Here Redis writes every change to a volume and never evicts keys, and the API doesn't start until Redis answers.
 - **Database and Redis stay private.** Neither has a public proxy. They are reachable only from your project's private network.
 - **A pinned release.** Evolution API v2.3.7 by image digest, with fixed Postgres and Redis versions, so a redeploy never pulls in an untested upgrade.
 - **Starts in the right order.** The API waits for Postgres, applies its migrations, waits for Redis, then starts. If the API process dies it is restarted in place.
