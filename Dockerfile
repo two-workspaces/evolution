@@ -30,4 +30,19 @@ ENV TZ=UTC \
 COPY railway/ /evolution/railway/
 RUN chmod +x /evolution/railway/entrypoint.sh
 
+# The manager UI loads its logo and favicon from evolution-api.com/files/evo/, which has
+# answered 404 since 2026, so the top-left logo is a broken image. Serve them from this
+# container instead: the upstream white logo (dark theme) and favicon, recovered unmodified
+# from the Web Archive, and the PNG logo the image already ships (light theme).
+# The build fails if a future release changes these URLs, so this can't silently stop working.
+RUN cp /evolution/railway/branding/*.svg /evolution/manager/dist/assets/images/ \
+ && cd /evolution/manager/dist \
+ && grep -q "evolution-api.com/files/evo/evolution-logo" assets/*.js \
+ && sed -i \
+      -e 's#https://evolution-api.com/files/evo/evolution-logo-white.svg#/assets/images/evolution-logo-white.svg#g' \
+      -e 's#https://evolution-api.com/files/evo/evolution-logo.svg#/assets/images/evolution-logo.png#g' \
+      -e 's#type="image/png" href="https://evolution-api.com/files/evo/favicon.svg"#type="image/svg+xml" href="/assets/images/favicon.svg"#g' \
+      index.html assets/*.js \
+ && ! grep -q "evolution-api.com/files/evo" index.html assets/*.js
+
 ENTRYPOINT ["/sbin/tini", "-g", "--", "/evolution/railway/entrypoint.sh"]
