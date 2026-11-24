@@ -3,7 +3,7 @@
 # the API if it dies. Built by .github/workflows/image.yml; Railway pulls the finished image.
 # Tag only, no digest: Dispatcher's upgrade check reads this line to see when a newer release is out.
 # Each build is frozen anyway: the template deploys ghcr.io/two-workspaces/evolution:<commit>.
-FROM evoapicloud/evolution-api:v2.3.7
+FROM evoapicloud/evolution-api:v2.3.8
 
 RUN apk add --no-cache tini
 
