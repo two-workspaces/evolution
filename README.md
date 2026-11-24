@@ -10,7 +10,7 @@ The stack is three services: Evolution API, Postgres and Redis. Only Evolution A
 
 - **Paired numbers survive restarts.** Evolution API keeps the instance credentials in Postgres and WhatsApp's encryption keys in Redis. If Redis loses its data, messages can fail to decrypt and the number may need pairing again. Here Redis writes every change to a volume and never evicts keys, and the API doesn't start until Redis answers.
 - **Database and Redis stay private.** Neither has a public proxy. They are reachable only from your project's private network.
-- **A pinned release.** Evolution API v2.3.7 in an image built once per release, with fixed Postgres and Redis versions, so a redeploy never pulls in an untested upgrade.
+- **A pinned release.** Evolution API v2.3.8 in an image built once per release, with fixed Postgres and Redis versions, so a redeploy never pulls in an untested upgrade.
 - **Starts in the right order.** The API waits for Postgres, applies its migrations, waits for Redis, then starts. If the API process dies it is restarted in place.
 - **No default key.** The upstream image contains a public default API key. This template generates a private one and refuses to start if the key is empty or the default.
 - **Fits a small plan.** Tested with every service limited to 0.5 GB: the API used about 250 MB with one instance, Postgres 80 MB and Redis 20 MB. Usage grows with the number of paired numbers and their traffic.
@@ -70,7 +70,7 @@ A new QR code is at `GET /instance/connect/main` if the first one expires.
 | `TZ` | Time zone for logs and timestamps. Default `UTC`. |
 | `TELEMETRY_ENABLED` | Evolution API's usage telemetry. Off in this template. |
 
-Every other [Evolution API variable](https://github.com/EvolutionAPI/evolution-api/blob/2.3.7/.env.example) works as a service variable.
+Every other [Evolution API variable](https://github.com/EvolutionAPI/evolution-api/blob/2.3.8/.env.example) works as a service variable.
 
 **Media storage.** S3 is off, so media is delivered through webhooks and the API but not stored. For stored media, set `S3_ENABLED=true` with `S3_ENDPOINT`, `S3_ACCESS_KEY`, `S3_SECRET_KEY`, `S3_BUCKET` and `S3_REGION` for an S3-compatible store that allows listing buckets.
 

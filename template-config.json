@@ -11,7 +11,7 @@
         "restartPolicyMaxRetries": 10
       },
       "source": {
-        "image": "ghcr.io/two-workspaces/evolution:065f2b1"
+        "image": "ghcr.io/two-workspaces/evolution:98eea9e"
       },
       "variables": {
         "AUTHENTICATION_API_KEY": {
