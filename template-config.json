@@ -110,7 +110,7 @@
       "name": "Redis",
       "build": {},
       "deploy": {
-        "startCommand": "/bin/sh -c \"rm -rf $RAILWAY_VOLUME_MOUNT_PATH/lost+found/ && exec docker-entrypoint.sh redis-server --requirepass $REDIS_PASSWORD --appendonly yes --appendfsync everysec --save '' --maxmemory-policy noeviction --dir $RAILWAY_VOLUME_MOUNT_PATH\"",
+        "startCommand": "/bin/sh -c \"D=${RAILWAY_VOLUME_MOUNT_PATH:-/data}; test -z $RAILWAY_VOLUME_MOUNT_PATH && echo 'WARNING: Redis has no volume, so WhatsApp keys are lost on every restart. Add a volume at /data to this service.'; rm -rf $D/lost+found/ && exec docker-entrypoint.sh redis-server --requirepass $REDIS_PASSWORD --appendonly yes --appendfsync everysec --save '' --maxmemory-policy noeviction --dir $D\"",
         "healthcheckPath": null,
         "restartPolicyType": "ON_FAILURE",
         "restartPolicyMaxRetries": 10
